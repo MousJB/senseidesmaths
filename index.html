@@ -124,6 +124,9 @@ section { display: flex; flex-direction: column; gap: 16px; }
 .day .ill { background: var(--night); position: relative; height: 128px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .day .ill::before { content: ""; position: absolute; inset: 0; opacity: .12; background: repeating-linear-gradient(-12deg, #ffffff 0 1px, transparent 1px 14px); }
 .day .ill svg { position: relative; height: 104px; width: auto; }
+.day .ill img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.day .ill:has(img) { height: auto; aspect-ratio: 16 / 9; }
+.day .ill:has(img)::before { display: none; }
 .day .num { position: absolute; top: 10px; left: 12px; font-family: var(--display); font-size: .78rem; color: #ffffff; background: var(--red); padding: 3px 9px; border-radius: 6px; z-index: 1; }
 .day .txt { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; }
 .day .date { font-size: .85rem; color: var(--muted); font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
@@ -272,42 +275,21 @@ footer { color: var(--muted); font-size: .85rem; display: flex; flex-direction: 
       <article class="day">
         <div class="ill">
           <span class="num">Jour 1</span>
-          <svg viewBox="0 0 200 110" aria-hidden="true">
-            <text x="30" y="52" font-family="Dela Gothic One, sans-serif" font-size="34" fill="#ffffff">2</text>
-            <line x1="22" y1="62" x2="56" y2="62" stroke="#ffffff" stroke-width="4"/>
-            <text x="30" y="96" font-family="Dela Gothic One, sans-serif" font-size="34" fill="#ffffff">3</text>
-            <text x="68" y="76" font-family="Dela Gothic One, sans-serif" font-size="30" fill="#d4202f">+</text>
-            <text x="100" y="52" font-family="Dela Gothic One, sans-serif" font-size="34" fill="#ffffff">1</text>
-            <line x1="92" y1="62" x2="126" y2="62" stroke="#ffffff" stroke-width="4"/>
-            <text x="100" y="96" font-family="Dela Gothic One, sans-serif" font-size="34" fill="#ffffff">4</text>
-            <text x="140" y="56" font-family="Dela Gothic One, sans-serif" font-size="30" fill="#2f6be0">10</text>
-            <text x="178" y="34" font-family="Dela Gothic One, sans-serif" font-size="16" fill="#2f6be0">³</text>
-            <path d="M140 74h48M140 84h34M140 94h44" stroke="#ffffff" stroke-width="2" opacity=".55"/>
-          </svg>
+          <img src="img/jour1.webp" alt="Illustration : les fractions et les puissances s'affrontent comme deux attaques" width="800" height="450" loading="lazy" decoding="async">
         </div>
         <div class="txt"><span class="date">Lundi 21 déc.</span><h3>Automatismes sans calculatrice</h3><p>Fractions, puissances, pourcentages, équations. Mini-test de départ pour situer chaque élève.</p></div>
       </article>
       <article class="day">
         <div class="ill">
           <span class="num">Jour 2</span>
-          <svg viewBox="0 0 200 110" aria-hidden="true">
-            <path d="M30 96H186M40 104V12" stroke="#ffffff" stroke-width="2.5" opacity=".8"/>
-            <path d="M44 86 C 70 20, 96 20, 112 52 S 150 98, 182 26" fill="none" stroke="#d4202f" stroke-width="4" stroke-linecap="round"/>
-            <circle cx="88" cy="35" r="5" fill="#2f6be0"/><circle cx="142" cy="78" r="5" fill="#2f6be0"/>
-            <path d="M88 35V96M142 78V96" stroke="#2f6be0" stroke-width="2" stroke-dasharray="4 4"/>
-          </svg>
+          <img src="img/jour2.webp" alt="Illustration : une courbe de fonction qui suit le chemin d'une montagne jusqu'à un torii" width="800" height="450" loading="lazy" decoding="async">
         </div>
         <div class="txt"><span class="date">Mardi 22 déc.</span><h3>Fonctions</h3><p>Lecture graphique, variations : les notions essentielles à maîtriser pour les automatismes.</p></div>
       </article>
       <article class="day">
         <div class="ill">
           <span class="num">Jour 3</span>
-          <svg viewBox="0 0 200 110" aria-hidden="true">
-            <rect x="26" y="62" width="16" height="34" fill="#ffffff" opacity=".85"/><rect x="48" y="40" width="16" height="56" fill="#2f6be0"/><rect x="70" y="22" width="16" height="74" fill="#d4202f"/><rect x="92" y="50" width="16" height="46" fill="#ffffff" opacity=".85"/>
-            <rect x="128" y="28" width="46" height="46" rx="9" fill="#ffffff" transform="rotate(12 151 51)"/>
-            <g fill="#0c0f17" transform="rotate(12 151 51)"><circle cx="140" cy="40" r="4.5"/><circle cx="151" cy="51" r="4.5"/><circle cx="162" cy="62" r="4.5"/></g>
-            <text x="128" y="104" font-family="Dela Gothic One, sans-serif" font-size="18" fill="#d4202f">−4 %</text>
-          </svg>
+          <img src="img/jour3.webp" alt="Illustration : des dés et des diagrammes statistiques en plein élan" width="800" height="450" loading="lazy" decoding="async">
         </div>
         <div class="txt"><span class="date">Mercredi 23 déc.</span><h3>Évolutions, probabilités et statistiques</h3><p>Taux d'évolution, indicateurs statistiques et probabilités. Exercices adaptés au programme de chaque élève.</p></div>
       </article>
