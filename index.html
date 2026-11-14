@@ -3,91 +3,124 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stage de Noël maths première</title>
+<title>Stage de Noël maths première · Sensei des Maths</title>
+<meta name="description" content="Stage intensif de Noël en visio pour préparer l'épreuve anticipée de maths de première (juin 2027). 4 matinées, 6 élèves maximum, du 21 au 24 décembre.">
+<link rel="icon" href="logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* Layout: one narrow column, an "exam paper" feel — ink, ruled lines, a red correction mark as accent */
+/* Layout: one narrow reading column; exam-paper feel, ink + red correction mark; sticky booking bar on phones */
 :root {
   --paper: #f6f7fa;
   --card: #ffffff;
   --ink: #18223a;
-  --muted: #56607a;
+  --muted: #535d76;
   --line: #dde1ea;
-  --accent: #d93a3a;
+  --accent: #c8283a;
   --accent-ink: #ffffff;
   --soft: #fdeceb;
+  --ok: #1d6b4f;
   --display: "Unbounded", "Arial Black", system-ui, sans-serif;
   --body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #111726; --card: #1a2235; --ink: #eef1f8; --muted: #a3acc2;
-    --line: #2c3650; --accent: #ff6b63; --accent-ink: #1a0b0a; --soft: #3a1f25;
+    --paper: #111726; --card: #1a2235; --ink: #eef1f8; --muted: #a8b1c6;
+    --line: #2c3650; --accent: #ff6b63; --accent-ink: #1a0b0a; --soft: #3a1f25; --ok: #5fd3a5;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #111726; --card: #1a2235; --ink: #eef1f8; --muted: #a3acc2;
-  --line: #2c3650; --accent: #ff6b63; --accent-ink: #1a0b0a; --soft: #3a1f25;
+  --paper: #111726; --card: #1a2235; --ink: #eef1f8; --muted: #a8b1c6;
+  --line: #2c3650; --accent: #ff6b63; --accent-ink: #1a0b0a; --soft: #3a1f25; --ok: #5fd3a5;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
 body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
-.wrap { max-width: 720px; margin: 0 auto; padding: 28px 18px 64px; display: flex; flex-direction: column; gap: 28px; }
+.wrap { max-width: 720px; margin: 0 auto; padding: 24px 18px 110px; display: flex; flex-direction: column; gap: 36px; }
 h1, h2 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
-h1 { font-size: clamp(1.7rem, 6vw, 2.5rem); font-weight: 700; }
-h2 { font-size: 1.15rem; font-weight: 500; }
-p { margin: 0; }
-.tag { display: inline-block; font-size: .8rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); }
-.hero { display: flex; flex-direction: column; gap: 14px; }
-.hero p.lead { font-size: 1.1rem; color: var(--muted); max-width: 60ch; }
+h1 { font-size: clamp(1.75rem, 6.4vw, 2.6rem); font-weight: 700; }
+h2 { font-size: 1.2rem; font-weight: 500; }
+h3 { font-size: 1rem; margin: 0; }
+p { margin: 0; text-wrap: pretty; }
+a { color: var(--accent); }
+section { display: flex; flex-direction: column; gap: 14px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+.muted { color: var(--muted); }
+.small { font-size: .92rem; }
+
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: .85rem; letter-spacing: .05em; text-transform: uppercase; }
+.brand img { width: 56px; height: 56px; border-radius: 50%; }
+.hero { display: flex; flex-direction: column; gap: 16px; }
+.lead { font-size: 1.1rem; color: var(--muted); max-width: 62ch; }
 .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
 .fact { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
 .fact b { display: block; font-family: var(--display); font-weight: 500; font-size: 1rem; }
 .fact span { color: var(--muted); font-size: .9rem; }
+
+.offer { display: flex; flex-direction: column; gap: 12px; border-left: 5px solid var(--accent); }
+.price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.price .big { font-family: var(--display); font-size: 2.3rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.price s { color: var(--muted); font-size: 1.2rem; }
+.pill { display: inline-block; background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 4px 10px; border-radius: 999px; }
+.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.checks li { padding-left: 26px; position: relative; }
+.checks li::before { content: ""; position: absolute; left: 4px; top: .45em; width: 11px; height: 6px; border-left: 2.5px solid var(--ok); border-bottom: 2.5px solid var(--ok); transform: rotate(-45deg); }
+
 .cta { display: flex; flex-wrap: wrap; gap: 10px; }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 20px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 1rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 22px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 1rem; text-align: center; }
 .btn.primary { background: var(--accent); color: var(--accent-ink); }
 .btn.ghost { border: 2px solid var(--ink); color: var(--ink); }
 .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-section { display: flex; flex-direction: column; gap: 14px; }
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
-.price { display: flex; flex-direction: column; gap: 10px; border-left: 5px solid var(--accent); }
-.price .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 14px; }
-.price .big { font-family: var(--display); font-size: 2.2rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-.price s { color: var(--muted); font-size: 1.2rem; }
-.pill { background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 4px 10px; border-radius: 999px; }
-.days { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--line); }
+.alt { font-size: .95rem; color: var(--muted); }
+.alt a { font-weight: 700; }
+
+.exam { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.exam .card { padding: 14px; }
+.exam b { font-family: var(--display); font-weight: 500; font-size: 1.35rem; font-variant-numeric: tabular-nums; display: block; }
+.exam span { color: var(--muted); font-size: .9rem; }
+
+.days { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .days li { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
 .days .d { font-family: var(--display); font-weight: 500; font-size: .9rem; }
 .days .d small { display: block; font-family: var(--body); color: var(--muted); font-weight: 400; font-size: .85rem; }
-.days strong { display: block; }
 .days p { color: var(--muted); font-size: .95rem; }
-ul.list { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 6px; }
-.exam { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.exam .card { padding: 14px; }
-.exam b { font-family: var(--display); font-weight: 500; font-size: 1.4rem; font-variant-numeric: tabular-nums; display: block; }
-.exam span { color: var(--muted); font-size: .9rem; }
-.qa { border-bottom: 1px solid var(--line); padding: 12px 0; display: flex; flex-direction: column; gap: 4px; }
-.qa h3 { font-size: 1rem; margin: 0; }
-.qa p { color: var(--muted); }
-.final { text-align: left; display: flex; flex-direction: column; gap: 12px; }
-footer { color: var(--muted); font-size: .85rem; }
-.note { font-size: .9rem; color: var(--muted); }
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
-.steps li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 4px; }
-.steps span { color: var(--muted); font-size: .95rem; }
+
+.timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.timeline li { display: grid; grid-template-columns: 70px 1fr; gap: 12px; align-items: baseline; }
+.timeline b { font-family: var(--display); font-weight: 500; font-size: .95rem; font-variant-numeric: tabular-nums; color: var(--accent); }
+.bar { display: flex; height: 10px; border-radius: 999px; overflow: hidden; gap: 2px; }
+.bar span { background: var(--accent); }
+.bar span.light { background: var(--line); }
+
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
 .sample { display: flex; flex-direction: column; gap: 8px; }
-.sample .pill { align-self: flex-start; }
-.brand { display: flex; align-items: center; gap: 12px; }
-.brand img { width: 72px; height: 72px; border-radius: 50%; }
-.alt { font-size: .95rem; color: var(--muted); }
-.alt a { color: var(--accent); font-weight: 700; }
-@media (max-width: 420px) { .days li { grid-template-columns: 1fr; gap: 4px; } }
+.tech { display: flex; flex-direction: column; gap: 6px; border: 2px solid var(--ink); border-radius: 10px; padding: 14px 16px; background: var(--card); }
+.tech .k { font-family: var(--display); color: var(--accent); font-size: 1.05rem; }
+.hl { background: #fff3b0; color: #18223a; padding: 2px 6px; border-radius: 4px; }
+
+.prof { display: flex; gap: 16px; align-items: flex-start; }
+.prof img { width: 84px; height: 84px; border-radius: 50%; flex-shrink: 0; }
+
+.free { display: flex; flex-direction: column; gap: 10px; background: var(--ink); color: var(--paper); border-radius: 12px; padding: 20px; }
+.free h2 { color: var(--paper); }
+.free p { color: var(--paper); opacity: .88; }
+.free .btn { background: var(--paper); color: var(--ink); align-self: flex-start; }
+
+.qa { border-bottom: 1px solid var(--line); padding: 14px 0; display: flex; flex-direction: column; gap: 4px; }
+.qa p { color: var(--muted); }
+
+footer { color: var(--muted); font-size: .85rem; display: flex; flex-direction: column; gap: 4px; }
+
+.sticky { position: fixed; left: 0; right: 0; bottom: 0; background: var(--card); border-top: 1px solid var(--line); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); display: flex; align-items: center; justify-content: space-between; gap: 12px; z-index: 10; }
+.sticky .info { font-size: .9rem; line-height: 1.3; }
+.sticky .info b { font-family: var(--display); font-weight: 500; }
+.sticky .btn { min-height: 46px; padding: 0 18px; }
+@media (min-width: 900px) { .sticky { display: none; } .wrap { padding-bottom: 64px; } }
+@media (max-width: 420px) { .days li { grid-template-columns: 1fr; gap: 4px; } .exam { grid-template-columns: 1fr 1fr; } }
 @media (prefers-reduced-motion: no-preference) { .btn { transition: transform .15s; } .btn:hover { transform: translateY(-1px); } }
 </style>
 </head>
@@ -95,30 +128,21 @@ footer { color: var(--muted); font-size: .85rem; }
 <main class="wrap">
 
   <header class="hero">
-    <div class="brand"><img src="logo.jpg" alt="Logo Sensei des Maths" width="72" height="72"><span class="tag">Sensei des Maths · Première</span></div>
+    <div class="brand"><img src="logo.jpg" alt="Logo Sensei des Maths" width="56" height="56"><span>Sensei des Maths · Première</span></div>
     <h1>Stage intensif de Noël : prépare ton épreuve anticipée de maths</h1>
-    <p class="lead">4 matinées en visio pour maîtriser les automatismes, reprendre les notions essentielles de première et gagner en confiance avant l'épreuve de juin 2027. Pour la première générale et technologique, avec ou sans spé maths : exercices et méthodes adaptés au parcours de chaque élève.</p>
+    <p class="lead">4 matinées en visio pour maîtriser les automatismes, reprendre les notions essentielles de première et gagner en confiance avant l'épreuve de juin 2027. Pour la première générale et technologique, avec ou sans spé maths.</p>
     <div class="facts">
-      <div class="fact"><b>21 → 24 déc.</b><span>lundi au jeudi</span></div>
+      <div class="fact"><b>21 → 24 déc.</b><span>du lundi au jeudi</span></div>
       <div class="fact"><b>10h – 12h30</b><span>heure de Paris</span></div>
-      <div class="fact"><b>6 élèves max</b><span>en visio, caméra allumée</span></div>
-      <div class="fact"><b>10 h de cours</b><span>+ replays et fiches</span></div>
+      <div class="fact"><b>6 élèves max</b><span>en visio, petit groupe</span></div>
+      <div class="fact"><b>150 €</b><span>au lieu de 200 €, 3 places</span></div>
     </div>
     <div class="cta">
-      <a class="btn primary" href="https://buy.stripe.com/fZu5kCfnD7CG2udgwSdwc01" target="_blank" rel="noopener">Réserver une place</a>
+      <a class="btn primary" href="https://buy.stripe.com/fZu5kCfnD7CG2udgwSdwc01" target="_blank" rel="noopener">Réserver une place · 150 €</a>
       <a class="btn ghost" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Na5llZhoLQBbcyALgm1cF7P_PQ-jrCjjdpaJla6epzByFW4gX7H2bQ3GbXTa9SCMI2O2xfg-O" target="_blank" rel="noopener">Bilan gratuit de 20 min</a>
     </div>
-    <p class="note">Paiement sécurisé par carte via Stripe · Pas sûr du niveau ? Commencez par le bilan gratuit, sans engagement.</p>
+    <p class="alt">Paiement unique et sécurisé par carte (Stripe), sans abonnement. Inscriptions jusqu'au 13 décembre.</p>
   </header>
-
-  <section>
-    <div class="card price">
-      <span class="pill">Tarif de lancement : 3 premières places</span>
-      <div class="row"><span class="big">150 €</span><s>200 €</s></div>
-      <p>Les 10 heures, les replays, les fiches méthode et le bilan écrit envoyé aux parents. Ensuite, la place est à 200 €. Inscriptions jusqu'au 13 décembre.</p>
-      <p class="alt">Places de lancement épuisées ? <a href="https://buy.stripe.com/4gM4gy6R7e14fgZfsOdwc00" target="_blank" rel="noopener">Réserver au tarif normal (200 €)</a></p>
-    </div>
-  </section>
 
   <section>
     <h2>L'épreuve en bref</h2>
@@ -128,68 +152,122 @@ footer { color: var(--muted); font-size: .85rem; }
       <div class="card"><b>6 pts</b><span>automatismes : questions à réponses courtes</span></div>
       <div class="card"><b>14 pts</b><span>2 ou 3 exercices</span></div>
     </div>
-    <p class="note">La qualité de la rédaction et de la langue compte pour 2 points sur 20. Format de la session de juin 2027, selon le Bulletin officiel du 17 septembre 2026.</div>
+    <p class="small muted">La maîtrise de la langue est prise en compte à hauteur de 2 points sur 20 : bien rédiger rapporte des points. Format de la session de juin 2027, d'après le Bulletin officiel spécial n° 4 du 17 septembre 2026.</p>
   </section>
 
   <section>
-    <h2>Comment ça se passe</h2>
-    <ol class="steps">
-      <li><b>1. Vous réservez</b><span>Paiement en ligne en 1 minute. Vous recevez la confirmation par email.</span></li>
-      <li><b>2. Je vous écris</b><span>Avant le 18 décembre : lien de la visio, programme et matériel à prévoir.</span></li>
-      <li><b>3. Votre enfant progresse</b><span>4 matinées en petit groupe, puis un bilan écrit envoyé aux parents.</span></li>
-    </ol>
-  </section>
-
-  <section>
-    <h2>Le programme</h2>
+    <h2>Le programme des 4 matinées</h2>
     <ol class="days">
-      <li><span class="d">Jour 1<small>lun. 21</small></span><div><strong>Automatismes sans calculatrice</strong><p>Fractions, puissances, pourcentages, équations. Mini-test de départ pour situer chaque élève.</p></div></li>
-      <li><span class="d">Jour 2<small>mar. 22</small></span><div><strong>Fonctions</strong><p>Lecture graphique, second degré, variations : les questions qui reviennent dans les automatismes.</p></div></li>
-      <li><span class="d">Jour 3<small>mer. 23</small></span><div><strong>Évolutions, probabilités et statistiques</strong><p>Taux d'évolution, indicateurs statistiques et probabilités. Exercices adaptés au programme de chaque élève.</p></div></li>
-      <li><span class="d">Jour 4<small>jeu. 24</small></span><div><strong>Sujet en conditions réelles</strong><p>Un sujet type épreuve, corrigé en direct, avec la méthode pour bien rédiger. Test final et bilan avant / après envoyé aux parents.</p></div></li>
+      <li><span class="d">Jour 1<small>lun. 21</small></span><div><h3>Automatismes sans calculatrice</h3><p>Fractions, puissances, pourcentages, équations. Mini-test de départ pour situer chaque élève.</p></div></li>
+      <li><span class="d">Jour 2<small>mar. 22</small></span><div><h3>Fonctions</h3><p>Lecture graphique, variations : les notions essentielles à maîtriser pour les automatismes.</p></div></li>
+      <li><span class="d">Jour 3<small>mer. 23</small></span><div><h3>Évolutions, probabilités et statistiques</h3><p>Taux d'évolution, indicateurs statistiques et probabilités. Exercices adaptés au programme de chaque élève.</p></div></li>
+      <li><span class="d">Jour 4<small>jeu. 24</small></span><div><h3>Sujet en conditions réelles</h3><p>Un sujet type épreuve corrigé en direct, avec la méthode pour bien rédiger. Test final et bilan avant / après.</p></div></li>
     </ol>
+    <p class="small muted">Chaque élève travaille le sujet de son parcours : spécialité maths, enseignement scientifique sans spécialité, ou voie technologique.</p>
   </section>
 
   <section>
-    <h2>Ce que votre enfant reçoit</h2>
-    <ul class="list">
-      <li>Les replays des 4 séances, à revoir jusqu'à l'épreuve</li>
-      <li>Une fiche méthode par chapitre</li>
-      <li>Un bilan écrit : points forts, points à travailler, progression entre le jour 1 et le jour 4</li>
-    </ul>
-  <div class="card sample">
-      <span class="pill">Exemple de bilan · élève fictif</span>
-      <p><b>Automatismes :</b> 9/16 au jour 1, 13/16 au jour 4. Pourcentages et fractions maîtrisés.</p>
-      <p><b>À travailler :</b> lecture graphique des variations, rédaction des justifications.</p>
-      <p><b>Conseil d'ici janvier :</b> 10 minutes d'automatismes par jour avec la fiche n°1.</p>
+    <h2>À quoi ressemble une matinée ?</h2>
+    <div class="card" style="display:flex;flex-direction:column;gap:14px">
+      <div class="bar" aria-hidden="true"><span style="flex:10"></span><span style="flex:35"></span><span class="light" style="flex:10"></span><span style="flex:60"></span><span style="flex:25"></span><span class="light" style="flex:10"></span></div>
+      <ol class="timeline">
+        <li><b>10 min</b><span>Échauffement : 5 automatismes chronométrés</span></li>
+        <li><b>35 min</b><span>Méthodes et exemples corrigés, pas à pas</span></li>
+        <li><b>10 min</b><span>Pause</span></li>
+        <li><b>60 min</b><span>Exercices accompagnés, chacun à son niveau</span></li>
+        <li><b>25 min</b><span>Correction commune et questions</span></li>
+        <li><b>10 min</b><span>Ce qu'il faut retenir et travail conseillé pour le lendemain</span></li>
+      </ol>
+      <p class="small muted">Déroulement type de 2h30. Caméra allumée, questions à tout moment : en groupe de 6, chacun a la parole.</p>
     </div>
   </section>
 
-  <section class="card">
-    <h2>Le prof</h2>
-    <p>Moustafa Jabie, enseignant de mathématiques. Ancien élève de classe prépa PSI, Master de mathématiques appliquées. Il crée les vidéos Sensei des Maths sur TikTok, où les notions du lycée sont expliquées à travers les animés.</p>
+  <section>
+    <h2>Concrètement, ce que reçoit votre enfant</h2>
+    <div class="card offer">
+      <span class="pill">Paiement unique · aucun abonnement</span>
+      <div class="price"><span class="big">150 €</span><s>200 €</s><span class="muted small">tarif de lancement, 3 premières places</span></div>
+      <ul class="checks">
+        <li>Les 4 matinées en direct (10 heures de cours)</li>
+        <li>Les replays de chaque séance, à revoir jusqu'à l'épreuve de juin 2027</li>
+        <li>Une fiche méthode par chapitre, à imprimer</li>
+        <li>Un bilan écrit individuel envoyé aux parents à la fin du stage</li>
+      </ul>
+      <div class="cta">
+        <a class="btn primary" href="https://buy.stripe.com/fZu5kCfnD7CG2udgwSdwc01" target="_blank" rel="noopener">Réserver une place</a>
+      </div>
+      <p class="alt">Places de lancement épuisées ? <a href="https://buy.stripe.com/4gM4gy6R7e14fgZfsOdwc00" target="_blank" rel="noopener">Réserver au tarif normal (200 €)</a></p>
+    </div>
+
+    <div class="grid2">
+      <div class="sample">
+        <span class="small muted">Extrait d'une fiche méthode</span>
+        <div class="tech">
+          <span class="k">技 03 · Coefficient multiplicateur</span>
+          <span>Hausse de t % : × (1 + t/100)</span>
+          <span>Baisse de t % : × (1 − t/100)</span>
+          <span class="hl">+20 % puis −20 % : × 1,2 × 0,8 = × 0,96</span>
+          <span><b style="color:var(--accent)">Piège :</b> on ne revient pas au départ, c'est −4 %.</span>
+        </div>
+      </div>
+      <div class="sample">
+        <span class="small muted">Exemple de bilan envoyé aux parents (élève fictif)</span>
+        <div class="card" style="display:flex;flex-direction:column;gap:8px">
+          <p><b>Automatismes :</b> 9/16 au jour 1, 13/16 au jour 4.</p>
+          <p><b>Acquis :</b> pourcentages et fractions.</p>
+          <p><b>À travailler :</b> variations d'une fonction, rédaction des justifications.</p>
+          <p><b>D'ici janvier :</b> 10 minutes d'automatismes par jour avec la fiche n°1.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Votre enseignant</h2>
+    <div class="card prof">
+      <img src="logo.jpg" alt="" width="84" height="84">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <p><b>Moustafa Jabie, enseignant de mathématiques.</b> Ancien élève de classe préparatoire PSI, Master de mathématiques appliquées.</p>
+        <p class="muted">Sur TikTok, plus de 1 000 élèves suivent <a href="https://www.tiktok.com/@senseidesmaths" target="_blank" rel="noopener">@senseidesmaths</a>, où chaque notion du lycée est expliquée à travers l'univers des animés. Même approche en stage : des méthodes claires, des repères qui restent en tête.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="free">
+    <h2>Pas sûr que ce soit pour votre enfant ?</h2>
+    <p>Réservez un bilan gratuit de 20 minutes en visio. On fait le point sur ses acquis et ses difficultés, et je vous dis honnêtement si le stage est adapté. Sans engagement.</p>
+    <a class="btn" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Na5llZhoLQBbcyALgm1cF7P_PQ-jrCjjdpaJla6epzByFW4gX7H2bQ3GbXTa9SCMI2O2xfg-O" target="_blank" rel="noopener">Choisir un créneau</a>
   </section>
 
   <section>
     <h2>Questions fréquentes</h2>
     <div>
-      <div class="qa"><h3>Mon enfant ne fait pas spé maths, est-ce adapté ?</h3><p>Oui. Le stage est conçu pour toute la première, générale ou technologique, avec ou sans spécialité maths. Il prépare l'élève au sujet correspondant à son parcours : spécialité maths, enseignement scientifique sans spécialité, ou voie technologique.</p></div>
-      <div class="qa"><h3>De quoi a-t-il besoin ?</h3><p>Un ordinateur avec une connexion internet stable, de quoi écrire et des feuilles. La calculatrice n'est pas utilisée pendant les exercices, comme à l'épreuve. Le lien de la visio est envoyé par email après l'inscription.</p></div>
-      <div class="qa"><h3>Et s'il manque une séance ?</h3><p>Chaque séance est enregistrée. Le replay et les fiches méthode permettent de rattraper le contenu.</p></div>
-      <div class="qa"><h3>Je ne suis pas sûr du niveau de mon enfant.</h3><p>Réservez un bilan gratuit de 20 minutes. Nous faisons le point sur ses acquis et ses difficultés avant toute inscription.</p></div>
+      <div class="qa"><h3>Mon enfant ne fait pas spé maths, est-ce adapté ?</h3><p>Oui. Le stage prépare chaque élève au sujet de son parcours : spécialité maths, enseignement scientifique sans spécialité, ou voie technologique.</p></div>
+      <div class="qa"><h3>Que se passe-t-il après le paiement ?</h3><p>Vous recevez une confirmation par email. Avant le 18 décembre, je vous envoie le lien de la visio, le programme détaillé et le matériel à prévoir.</p></div>
+      <div class="qa"><h3>De quoi a-t-il besoin ?</h3><p>Un ordinateur avec une connexion internet stable, de quoi écrire et des feuilles. Pas de calculatrice, comme à l'épreuve.</p></div>
+      <div class="qa"><h3>Et s'il manque une séance ?</h3><p>Chaque séance est enregistrée. Le replay et les fiches méthode permettent de rattraper.</p></div>
+      <div class="qa"><h3>Et si nous devons annuler ?</h3><p>Jusqu'au 13 décembre, vous êtes remboursé intégralement. Après cette date, la place n'est plus remboursable, mais votre enfant garde l'accès aux replays et aux fiches. Si le stage devait être annulé de mon côté, vous seriez remboursé intégralement.</p></div>
+      <div class="qa"><h3>Je ne suis pas sûr du niveau de mon enfant.</h3><p>Réservez le bilan gratuit de 20 minutes : nous faisons le point avant toute inscription.</p></div>
     </div>
   </section>
 
-  <section class="final">
+  <section>
     <h2>6 places, inscriptions jusqu'au 13 décembre</h2>
     <div class="cta">
-      <a class="btn primary" href="https://buy.stripe.com/fZu5kCfnD7CG2udgwSdwc01" target="_blank" rel="noopener">Réserver une place</a>
+      <a class="btn primary" href="https://buy.stripe.com/fZu5kCfnD7CG2udgwSdwc01" target="_blank" rel="noopener">Réserver une place · 150 €</a>
       <a class="btn ghost" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Na5llZhoLQBbcyALgm1cF7P_PQ-jrCjjdpaJla6epzByFW4gX7H2bQ3GbXTa9SCMI2O2xfg-O" target="_blank" rel="noopener">Bilan gratuit de 20 min</a>
     </div>
-    <p class="alt">Places de lancement épuisées ? <a href="https://buy.stripe.com/4gM4gy6R7e14fgZfsOdwc00" target="_blank" rel="noopener">Réserver au tarif normal (200 €)</a></p>
   </section>
 
-  <footer>Sensei des Maths · @senseidesmaths sur TikTok</footer>
+  <footer>
+    <span>Sensei des Maths · @senseidesmaths sur TikTok</span>
+    <span>Stage en ligne, horaires en heure de Paris.</span>
+  </footer>
 </main>
+
+<div class="sticky" role="region" aria-label="Réservation">
+  <div class="info"><b>150 €</b> · 21–24 déc.<br><span class="muted">3 places au tarif de lancement</span></div>
+  <a class="btn primary" href="https://buy.stripe.com/fZu5kCfnD7CG2udgwSdwc01" target="_blank" rel="noopener">Réserver</a>
+</div>
 </body>
 </html>
