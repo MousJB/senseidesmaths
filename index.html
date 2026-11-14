@@ -5,184 +5,349 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stage de Noël maths première · Sensei des Maths</title>
 <meta name="description" content="Stage intensif de Noël en visio pour préparer l'épreuve anticipée de maths de première (juin 2027). 4 matinées, 6 élèves maximum, du 21 au 24 décembre.">
+<meta name="theme-color" content="#0c0f17">
 <link rel="icon" href="logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* Layout: one narrow reading column; exam-paper feel, ink + red correction mark; sticky booking bar on phones */
+/* Layout: dark manga hero taken from the logo (night ink, brush red, chalk blue), then a light, calm reading column for parents; sticky booking bar on phones */
 :root {
-  --paper: #f6f7fa;
+  --night: #0c0f17;
+  --night-2: #151b2a;
+  --paper: #f5f6f9;
   --card: #ffffff;
-  --ink: #18223a;
-  --muted: #535d76;
-  --line: #dde1ea;
-  --accent: #c8283a;
-  --accent-ink: #ffffff;
-  --soft: #fdeceb;
+  --ink: #141a2b;
+  --muted: #525c74;
+  --line: #dfe3eb;
+  --red: #d4202f;
+  --red-ink: #ffffff;
+  --blue: #2f6be0;
+  --sand: #e9dcc6;
+  --soft-red: #fde9ea;
+  --soft-blue: #e8effd;
   --ok: #1d6b4f;
-  --display: "Unbounded", "Arial Black", system-ui, sans-serif;
+  --display: "Dela Gothic One", "Arial Black", system-ui, sans-serif;
   --body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
   color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #111726; --card: #1a2235; --ink: #eef1f8; --muted: #a8b1c6;
-    --line: #2c3650; --accent: #ff6b63; --accent-ink: #1a0b0a; --soft: #3a1f25; --ok: #5fd3a5;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #111726; --card: #1a2235; --ink: #eef1f8; --muted: #a8b1c6;
-  --line: #2c3650; --accent: #ff6b63; --accent-ink: #1a0b0a; --soft: #3a1f25; --ok: #5fd3a5;
-  color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
 body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
-.wrap { max-width: 720px; margin: 0 auto; padding: 24px 18px 110px; display: flex; flex-direction: column; gap: 36px; }
-h1, h2 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
-h1 { font-size: clamp(1.75rem, 6.4vw, 2.6rem); font-weight: 700; }
-h2 { font-size: 1.2rem; font-weight: 500; }
-h3 { font-size: 1rem; margin: 0; }
+img, svg { max-width: 100%; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+h1, h2 { font-family: var(--display); font-weight: 400; line-height: 1.12; }
+h2 { font-size: clamp(1.35rem, 4.6vw, 1.75rem); }
+h3 { font-size: 1.05rem; }
 p { margin: 0; text-wrap: pretty; }
-a { color: var(--accent); }
-section { display: flex; flex-direction: column; gap: 14px; }
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+a { color: var(--red); }
 .muted { color: var(--muted); }
 .small { font-size: .92rem; }
 
-.brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: .85rem; letter-spacing: .05em; text-transform: uppercase; }
-.brand img { width: 56px; height: 56px; border-radius: 50%; }
-.hero { display: flex; flex-direction: column; gap: 16px; }
-.lead { font-size: 1.1rem; color: var(--muted); max-width: 62ch; }
-.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
-.fact { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
-.fact b { display: block; font-family: var(--display); font-weight: 500; font-size: 1rem; }
-.fact span { color: var(--muted); font-size: .9rem; }
+/* ---------- hero ---------- */
+.hero {
+  background:
+    radial-gradient(120% 90% at 85% 10%, rgba(47,107,224,.28), transparent 55%),
+    radial-gradient(90% 80% at 5% 100%, rgba(212,32,47,.26), transparent 60%),
+    var(--night);
+  color: #f3f4f8; position: relative; overflow: hidden;
+}
+.hero::before { /* manga speed lines */
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .14;
+  background: repeating-conic-gradient(from 0deg at 78% 38%, #ffffff 0deg 1.2deg, transparent 1.2deg 9deg);
+  -webkit-mask: radial-gradient(circle at 78% 38%, transparent 0 22%, #000 60%);
+          mask: radial-gradient(circle at 78% 38%, transparent 0 22%, #000 60%);
+}
+.hero-in { position: relative; max-width: 1080px; margin: 0 auto; padding: 22px 18px 34px; display: grid; grid-template-columns: 1fr; gap: 22px; }
+@media (min-width: 900px) { .hero-in { grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); align-items: center; padding: 34px 24px 52px; gap: 36px; } }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: #d9dcea; }
+.brand img { width: 40px; height: 40px; border-radius: 50%; }
+.hero-text { display: flex; flex-direction: column; gap: 16px; }
+.hero h1 { font-size: clamp(1.9rem, 7vw, 3.1rem); color: #ffffff; }
+.hero h1 em { font-style: normal; color: #ff5a64; }
+.hero .lead { color: #c9cede; font-size: 1.08rem; max-width: 60ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); color: #ffffff; padding: 8px 12px; border-radius: 999px; font-weight: 700; font-size: .95rem; }
+.chip svg { width: 18px; height: 18px; flex-shrink: 0; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+.meta div { background: rgba(255,255,255,.06); border-left: 3px solid var(--red); padding: 10px 12px; border-radius: 6px; }
+.meta b { display: block; font-family: var(--display); font-weight: 400; font-size: 1.05rem; color: #ffffff; }
+.meta span { color: #b9bfd2; font-size: .88rem; }
+.meta .price b { color: #ff5a64; }
+.meta .price s { color: #9aa2b8; font-family: var(--body); font-size: .9rem; margin-left: 6px; }
+.hero .note { color: #aeb5c9; font-size: .9rem; }
 
-.offer { display: flex; flex-direction: column; gap: 12px; border-left: 5px solid var(--accent); }
-.price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
-.price .big { font-family: var(--display); font-size: 2.3rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-.price s { color: var(--muted); font-size: 1.2rem; }
-.pill { display: inline-block; background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 4px 10px; border-radius: 999px; }
-.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-.checks li { padding-left: 26px; position: relative; }
-.checks li::before { content: ""; position: absolute; left: 4px; top: .45em; width: 11px; height: 6px; border-left: 2.5px solid var(--ok); border-bottom: 2.5px solid var(--ok); transform: rotate(-45deg); }
+.hero-art { display: flex; justify-content: center; }
+.art { position: relative; width: min(300px, 70vw); aspect-ratio: 1; }
+.art .badge { position: absolute; inset: 12%; border-radius: 50%; box-shadow: 0 0 0 4px #ffffff, 0 0 0 10px rgba(212,32,47,.55), 0 20px 50px rgba(0,0,0,.55); overflow: hidden; }
+.art .badge img { width: 100%; height: 100%; display: block; }
+.art .glyph { position: absolute; font-family: var(--display); color: #ffffff; background: var(--red); padding: 4px 10px; border-radius: 8px; font-size: .95rem; transform: rotate(-6deg); box-shadow: 3px 3px 0 #000; white-space: nowrap; }
+.art .glyph.b { background: var(--blue); transform: rotate(5deg); }
+.art .g1 { top: 2%; left: -2%; }
+.art .g2 { top: 14%; right: -6%; }
+.art .g3 { bottom: 6%; left: -4%; }
+.art .g4 { bottom: 0; right: 2%; }
+.art .star { position: absolute; width: 22px; height: 22px; color: #ffd166; }
+@media (max-width: 899px) { .art { width: min(220px, 60vw); } .art .glyph { font-size: .8rem; } }
 
+/* ---------- buttons ---------- */
 .cta { display: flex; flex-wrap: wrap; gap: 10px; }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 22px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 1rem; text-align: center; }
-.btn.primary { background: var(--accent); color: var(--accent-ink); }
-.btn.ghost { border: 2px solid var(--ink); color: var(--ink); }
-.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 22px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 1.02rem; text-align: center; border: 0; }
+.btn.primary { background: var(--red); color: var(--red-ink); box-shadow: 4px 4px 0 #000; }
+.btn.ghost-dark { color: #ffffff; border: 2px solid rgba(255,255,255,.75); }
+.btn.ghost { color: var(--ink); border: 2px solid var(--ink); }
+.btn.light { background: #ffffff; color: var(--ink); box-shadow: 4px 4px 0 var(--red); }
+.btn:focus-visible { outline: 3px solid #ffd166; outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) { .btn { transition: transform .15s, box-shadow .15s; } .btn.primary:hover { transform: translate(-1px,-1px); box-shadow: 6px 6px 0 #000; } }
+
+/* ---------- body ---------- */
+.wrap { max-width: 760px; margin: 0 auto; padding: 40px 18px 120px; display: flex; flex-direction: column; gap: 52px; }
+section { display: flex; flex-direction: column; gap: 16px; }
+.kicker { display: inline-flex; align-self: flex-start; font-family: var(--display); font-size: .8rem; letter-spacing: .04em; color: #ffffff; background: var(--ink); padding: 4px 12px; transform: skew(-10deg); }
+.kicker span { display: inline-block; transform: skew(10deg); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+
+/* exam cards */
+.exam { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (min-width: 680px) { .exam { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.stat { background: var(--card); border: 2px solid var(--ink); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 6px; box-shadow: 4px 4px 0 var(--ink); }
+.stat svg { width: 34px; height: 34px; }
+.stat b { font-family: var(--display); font-weight: 400; font-size: 1.45rem; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: .9rem; line-height: 1.35; }
+.callout { display: flex; gap: 12px; align-items: flex-start; background: var(--soft-blue); border-radius: 12px; padding: 14px 16px; font-size: .95rem; }
+.callout svg { width: 26px; height: 26px; flex-shrink: 0; }
+
+/* day cards */
+.days { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 640px) { .days { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.day { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+.day .ill { background: var(--night); position: relative; height: 128px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.day .ill::before { content: ""; position: absolute; inset: 0; opacity: .12; background: repeating-linear-gradient(-12deg, #ffffff 0 1px, transparent 1px 14px); }
+.day .ill svg { position: relative; height: 104px; width: auto; }
+.day .num { position: absolute; top: 10px; left: 12px; font-family: var(--display); font-size: .78rem; color: #ffffff; background: var(--red); padding: 3px 9px; border-radius: 6px; z-index: 1; }
+.day .txt { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; }
+.day .date { font-size: .85rem; color: var(--muted); font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
+.day p { color: var(--muted); font-size: .95rem; }
+
+/* session timeline */
+.bar { display: flex; height: 12px; border-radius: 999px; overflow: hidden; gap: 3px; }
+.bar span { background: var(--red); }
+.bar span.b { background: var(--blue); }
+.bar span.light { background: var(--line); }
+.timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.timeline li { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: baseline; }
+.timeline b { font-family: var(--display); font-weight: 400; font-size: .95rem; font-variant-numeric: tabular-nums; }
+.timeline b.r { color: var(--red); } .timeline b.bl { color: var(--blue); } .timeline b.g { color: var(--muted); }
+
+/* offer */
+.offer { display: flex; flex-direction: column; gap: 14px; border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--red); }
+.pill { display: inline-block; align-self: flex-start; background: var(--soft-red); color: var(--red); font-weight: 700; font-size: .85rem; padding: 4px 10px; border-radius: 999px; }
+.price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.price .big { font-family: var(--display); font-size: 2.5rem; font-variant-numeric: tabular-nums; }
+.price s { color: var(--muted); font-size: 1.2rem; }
+.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.checks li { padding-left: 28px; position: relative; }
+.checks li::before { content: ""; position: absolute; left: 4px; top: .42em; width: 12px; height: 6px; border-left: 3px solid var(--ok); border-bottom: 3px solid var(--ok); transform: rotate(-45deg); }
 .alt { font-size: .95rem; color: var(--muted); }
 .alt a { font-weight: 700; }
 
-.exam { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.exam .card { padding: 14px; }
-.exam b { font-family: var(--display); font-weight: 500; font-size: 1.35rem; font-variant-numeric: tabular-nums; display: block; }
-.exam span { color: var(--muted); font-size: .9rem; }
+/* supports previews */
+.supports { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 700px) { .supports { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.sheet { background: #ffffff; color: #141a2b; border: 1px solid var(--line); border-radius: 6px; padding: 14px; display: flex; flex-direction: column; gap: 6px; font-size: .9rem; line-height: 1.4; box-shadow: 0 1px 0 var(--line), 0 10px 24px rgba(20,26,43,.10); position: relative; }
+.sheet.tilt-l { transform: rotate(-1.2deg); } .sheet.tilt-r { transform: rotate(1deg); }
+.sheet .head { display: flex; justify-content: space-between; align-items: center; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid #141a2b; padding-bottom: 6px; margin-bottom: 2px; }
+.sheet .k { font-family: var(--display); color: var(--red); font-size: .98rem; }
+.sheet .hl { background: #fff3b0; padding: 1px 5px; border-radius: 3px; }
+.sheet .step { display: grid; grid-template-columns: 20px 1fr; gap: 6px; }
+.sheet .step i { font-style: normal; font-family: var(--display); color: var(--blue); }
+.sheet .stamp { position: absolute; right: 10px; bottom: 10px; font-family: var(--display); font-size: .75rem; color: var(--red); border: 2px solid var(--red); border-radius: 6px; padding: 2px 6px; transform: rotate(-8deg); }
+.cap { font-size: .88rem; color: var(--muted); font-weight: 700; }
+.support { display: flex; flex-direction: column; gap: 8px; }
 
-.days { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.days li { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
-.days .d { font-family: var(--display); font-weight: 500; font-size: .9rem; }
-.days .d small { display: block; font-family: var(--body); color: var(--muted); font-weight: 400; font-size: .85rem; }
-.days p { color: var(--muted); font-size: .95rem; }
+/* prof */
+.prof { display: flex; gap: 18px; align-items: flex-start; }
+.prof .photo { width: 96px; height: 96px; border-radius: 50%; flex-shrink: 0; overflow: hidden; box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px var(--red); }
+.prof .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 480px) { .prof { flex-direction: column; } }
 
-.timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.timeline li { display: grid; grid-template-columns: 70px 1fr; gap: 12px; align-items: baseline; }
-.timeline b { font-family: var(--display); font-weight: 500; font-size: .95rem; font-variant-numeric: tabular-nums; color: var(--accent); }
-.bar { display: flex; height: 10px; border-radius: 999px; overflow: hidden; gap: 2px; }
-.bar span { background: var(--accent); }
-.bar span.light { background: var(--line); }
+/* free review */
+.free { background: var(--night); color: #f3f4f8; border-radius: 16px; padding: 24px 20px; display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden; }
+.free::before { content: ""; position: absolute; inset: 0; opacity: .1; background: repeating-linear-gradient(-12deg, #ffffff 0 1px, transparent 1px 16px); pointer-events: none; }
+.free > * { position: relative; }
+.free h2 { color: #ffffff; }
+.free p { color: #c9cede; }
+.free .btn { align-self: flex-start; }
 
-.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
-.sample { display: flex; flex-direction: column; gap: 8px; }
-.tech { display: flex; flex-direction: column; gap: 6px; border: 2px solid var(--ink); border-radius: 10px; padding: 14px 16px; background: var(--card); }
-.tech .k { font-family: var(--display); color: var(--accent); font-size: 1.05rem; }
-.hl { background: #fff3b0; color: #18223a; padding: 2px 6px; border-radius: 4px; }
-
-.prof { display: flex; gap: 16px; align-items: flex-start; }
-.prof img { width: 84px; height: 84px; border-radius: 50%; flex-shrink: 0; }
-
-.free { display: flex; flex-direction: column; gap: 10px; background: var(--ink); color: var(--paper); border-radius: 12px; padding: 20px; }
-.free h2 { color: var(--paper); }
-.free p { color: var(--paper); opacity: .88; }
-.free .btn { background: var(--paper); color: var(--ink); align-self: flex-start; }
-
-.qa { border-bottom: 1px solid var(--line); padding: 14px 0; display: flex; flex-direction: column; gap: 4px; }
+/* faq */
+.qa { border-bottom: 1px solid var(--line); padding: 16px 0; display: flex; flex-direction: column; gap: 6px; }
+.qa:first-child { padding-top: 4px; }
 .qa p { color: var(--muted); }
+
+.final { background: var(--card); border: 2px solid var(--ink); border-radius: 16px; padding: 22px 20px; display: flex; flex-direction: column; gap: 14px; }
 
 footer { color: var(--muted); font-size: .85rem; display: flex; flex-direction: column; gap: 4px; }
 
-.sticky { position: fixed; left: 0; right: 0; bottom: 0; background: var(--card); border-top: 1px solid var(--line); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); display: flex; align-items: center; justify-content: space-between; gap: 12px; z-index: 10; }
+/* sticky booking bar (phones) */
+.sticky { position: fixed; left: 0; right: 0; bottom: 0; background: #ffffff; border-top: 2px solid var(--ink); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); display: flex; align-items: center; justify-content: space-between; gap: 12px; z-index: 10; }
 .sticky .info { font-size: .9rem; line-height: 1.3; }
-.sticky .info b { font-family: var(--display); font-weight: 500; }
-.sticky .btn { min-height: 46px; padding: 0 18px; }
-@media (min-width: 900px) { .sticky { display: none; } .wrap { padding-bottom: 64px; } }
-@media (max-width: 420px) { .days li { grid-template-columns: 1fr; gap: 4px; } .exam { grid-template-columns: 1fr 1fr; } }
-@media (prefers-reduced-motion: no-preference) { .btn { transition: transform .15s; } .btn:hover { transform: translateY(-1px); } }
+.sticky .info b { font-family: var(--display); font-weight: 400; }
+.sticky .btn { min-height: 46px; padding: 0 18px; box-shadow: 3px 3px 0 #000; }
+@media (min-width: 900px) { .sticky { display: none; } .wrap { padding-bottom: 72px; } }
 </style>
 </head>
 <body>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <div class="brand"><img src="logo.jpg" alt="" width="40" height="40"><span>Sensei des Maths · Première</span></div>
+      <h1>Stage intensif de Noël : prépare ton <em>épreuve anticipée</em> de maths</h1>
+      <p class="lead">4 matinées en visio pour maîtriser les automatismes, reprendre les notions essentielles de première et gagner en confiance avant l'épreuve de juin 2027. Pour la première générale et technologique, avec ou sans spé maths.</p>
+      <div class="chips" aria-label="Le format du stage">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>4 matinées</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg>10 heures</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.5 1.2-4.5 3-5"/></svg>6 élèves max</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3"/></svg>En visio</span>
+      </div>
+      <div class="meta">
+        <div><b>21 → 24 déc.</b><span>du lundi au jeudi</span></div>
+        <div><b>10h – 12h30</b><span>heure de Paris</span></div>
+        <div class="price"><b>150 €<s>200 €</s></b><span>tarif de lancement, 3 places</span></div>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="https://buy.stripe.com/fZu5kCfnD7CG2udgwSdwc01" target="_blank" rel="noopener">Réserver une place · 150 €</a>
+        <a class="btn ghost-dark" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Na5llZhoLQBbcyALgm1cF7P_PQ-jrCjjdpaJla6epzByFW4gX7H2bQ3GbXTa9SCMI2O2xfg-O" target="_blank" rel="noopener">Bilan gratuit de 20 min</a>
+      </div>
+      <p class="note">Paiement unique et sécurisé par carte (Stripe), sans abonnement. Inscriptions jusqu'au 13 décembre.</p>
+    </div>
+
+    <div class="hero-art">
+      <div class="art">
+        <div class="badge"><img src="logo.jpg" alt="Logo Sensei des Maths : le Sensei de dos, chapeau conique et manteau marqué 先生" width="480" height="480"></div>
+        <span class="glyph g1">x² + 2x = 0</span>
+        <span class="glyph b g2">× 0,96</span>
+        <span class="glyph b g3">f'(x) &gt; 0</span>
+        <span class="glyph g4">P(A) = ¼</span>
+        <svg class="star" style="top:40%;left:-2%" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+        <svg class="star" style="top:2%;right:24%;width:14px;height:14px" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+      </div>
+    </div>
+  </div>
+</header>
+
 <main class="wrap">
 
-  <header class="hero">
-    <div class="brand"><img src="logo.jpg" alt="Logo Sensei des Maths" width="56" height="56"><span>Sensei des Maths · Première</span></div>
-    <h1>Stage intensif de Noël : prépare ton épreuve anticipée de maths</h1>
-    <p class="lead">4 matinées en visio pour maîtriser les automatismes, reprendre les notions essentielles de première et gagner en confiance avant l'épreuve de juin 2027. Pour la première générale et technologique, avec ou sans spé maths.</p>
-    <div class="facts">
-      <div class="fact"><b>21 → 24 déc.</b><span>du lundi au jeudi</span></div>
-      <div class="fact"><b>10h – 12h30</b><span>heure de Paris</span></div>
-      <div class="fact"><b>6 élèves max</b><span>en visio, petit groupe</span></div>
-      <div class="fact"><b>150 €</b><span>au lieu de 200 €, 3 places</span></div>
-    </div>
-    <div class="cta">
-      <a class="btn primary" href="https://buy.stripe.com/fZu5kCfnD7CG2udgwSdwc01" target="_blank" rel="noopener">Réserver une place · 150 €</a>
-      <a class="btn ghost" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Na5llZhoLQBbcyALgm1cF7P_PQ-jrCjjdpaJla6epzByFW4gX7H2bQ3GbXTa9SCMI2O2xfg-O" target="_blank" rel="noopener">Bilan gratuit de 20 min</a>
-    </div>
-    <p class="alt">Paiement unique et sécurisé par carte (Stripe), sans abonnement. Inscriptions jusqu'au 13 décembre.</p>
-  </header>
-
   <section>
-    <h2>L'épreuve en bref</h2>
+    <span class="kicker"><span>L'épreuve en bref</span></span>
+    <h2>Juin 2027 : ce qui attend votre enfant</h2>
     <div class="exam">
-      <div class="card"><b>2 h</b><span>sans calculatrice</span></div>
-      <div class="card"><b>Coef. 2</b><span>pris en compte dans le bac 2028</span></div>
-      <div class="card"><b>6 pts</b><span>automatismes : questions à réponses courtes</span></div>
-      <div class="card"><b>14 pts</b><span>2 ou 3 exercices</span></div>
+      <div class="stat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#141a2b" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 11h2M14 11h2M8 15h2M14 15h2"/><path d="M3 21L21 3" stroke="#d4202f" stroke-width="2.5"/></svg>
+        <b>2 h</b><span>sans calculatrice</span>
+      </div>
+      <div class="stat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#141a2b" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#2f6be0"/><path d="M8 15l8-6M9 9h.01M15 15h.01" stroke-linecap="round"/></svg>
+        <b>Coef. 2</b><span>pris en compte dans le bac 2028</span>
+      </div>
+      <div class="stat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#141a2b" stroke-width="2" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6" stroke="#d4202f"/></svg>
+        <b>6 pts</b><span>automatismes : questions à réponses courtes</span>
+      </div>
+      <div class="stat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#141a2b" stroke-width="2" aria-hidden="true"><path d="M6 2h9l4 4v16H6z"/><path d="M9 11l2 2 4-4" stroke="#1d6b4f"/><path d="M9 17h7"/></svg>
+        <b>14 pts</b><span>2 ou 3 exercices</span>
+      </div>
     </div>
-    <p class="small muted">La maîtrise de la langue est prise en compte à hauteur de 2 points sur 20 : bien rédiger rapporte des points. Format de la session de juin 2027, d'après le Bulletin officiel spécial n° 4 du 17 septembre 2026.</p>
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#2f6be0" stroke-width="2" aria-hidden="true"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></svg>
+      <p>La maîtrise de la langue est prise en compte à hauteur de 2 points sur 20 : bien rédiger rapporte des points. Format de la session de juin 2027, d'après le Bulletin officiel spécial n° 4 du 17 septembre 2026.</p>
+    </div>
   </section>
 
   <section>
-    <h2>Le programme des 4 matinées</h2>
-    <ol class="days">
-      <li><span class="d">Jour 1<small>lun. 21</small></span><div><h3>Automatismes sans calculatrice</h3><p>Fractions, puissances, pourcentages, équations. Mini-test de départ pour situer chaque élève.</p></div></li>
-      <li><span class="d">Jour 2<small>mar. 22</small></span><div><h3>Fonctions</h3><p>Lecture graphique, variations : les notions essentielles à maîtriser pour les automatismes.</p></div></li>
-      <li><span class="d">Jour 3<small>mer. 23</small></span><div><h3>Évolutions, probabilités et statistiques</h3><p>Taux d'évolution, indicateurs statistiques et probabilités. Exercices adaptés au programme de chaque élève.</p></div></li>
-      <li><span class="d">Jour 4<small>jeu. 24</small></span><div><h3>Sujet en conditions réelles</h3><p>Un sujet type épreuve corrigé en direct, avec la méthode pour bien rédiger. Test final et bilan avant / après.</p></div></li>
-    </ol>
+    <span class="kicker"><span>Le programme</span></span>
+    <h2>Les 4 matinées</h2>
+    <div class="days">
+      <article class="day">
+        <div class="ill">
+          <span class="num">Jour 1</span>
+          <svg viewBox="0 0 200 110" aria-hidden="true">
+            <text x="30" y="52" font-family="Dela Gothic One, sans-serif" font-size="34" fill="#ffffff">2</text>
+            <line x1="22" y1="62" x2="56" y2="62" stroke="#ffffff" stroke-width="4"/>
+            <text x="30" y="96" font-family="Dela Gothic One, sans-serif" font-size="34" fill="#ffffff">3</text>
+            <text x="68" y="76" font-family="Dela Gothic One, sans-serif" font-size="30" fill="#d4202f">+</text>
+            <text x="100" y="52" font-family="Dela Gothic One, sans-serif" font-size="34" fill="#ffffff">1</text>
+            <line x1="92" y1="62" x2="126" y2="62" stroke="#ffffff" stroke-width="4"/>
+            <text x="100" y="96" font-family="Dela Gothic One, sans-serif" font-size="34" fill="#ffffff">4</text>
+            <text x="140" y="56" font-family="Dela Gothic One, sans-serif" font-size="30" fill="#2f6be0">10</text>
+            <text x="178" y="34" font-family="Dela Gothic One, sans-serif" font-size="16" fill="#2f6be0">³</text>
+            <path d="M140 74h48M140 84h34M140 94h44" stroke="#ffffff" stroke-width="2" opacity=".55"/>
+          </svg>
+        </div>
+        <div class="txt"><span class="date">Lundi 21 déc.</span><h3>Automatismes sans calculatrice</h3><p>Fractions, puissances, pourcentages, équations. Mini-test de départ pour situer chaque élève.</p></div>
+      </article>
+      <article class="day">
+        <div class="ill">
+          <span class="num">Jour 2</span>
+          <svg viewBox="0 0 200 110" aria-hidden="true">
+            <path d="M30 96H186M40 104V12" stroke="#ffffff" stroke-width="2.5" opacity=".8"/>
+            <path d="M44 86 C 70 20, 96 20, 112 52 S 150 98, 182 26" fill="none" stroke="#d4202f" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="88" cy="35" r="5" fill="#2f6be0"/><circle cx="142" cy="78" r="5" fill="#2f6be0"/>
+            <path d="M88 35V96M142 78V96" stroke="#2f6be0" stroke-width="2" stroke-dasharray="4 4"/>
+          </svg>
+        </div>
+        <div class="txt"><span class="date">Mardi 22 déc.</span><h3>Fonctions</h3><p>Lecture graphique, variations : les notions essentielles à maîtriser pour les automatismes.</p></div>
+      </article>
+      <article class="day">
+        <div class="ill">
+          <span class="num">Jour 3</span>
+          <svg viewBox="0 0 200 110" aria-hidden="true">
+            <rect x="26" y="62" width="16" height="34" fill="#ffffff" opacity=".85"/><rect x="48" y="40" width="16" height="56" fill="#2f6be0"/><rect x="70" y="22" width="16" height="74" fill="#d4202f"/><rect x="92" y="50" width="16" height="46" fill="#ffffff" opacity=".85"/>
+            <rect x="128" y="28" width="46" height="46" rx="9" fill="#ffffff" transform="rotate(12 151 51)"/>
+            <g fill="#0c0f17" transform="rotate(12 151 51)"><circle cx="140" cy="40" r="4.5"/><circle cx="151" cy="51" r="4.5"/><circle cx="162" cy="62" r="4.5"/></g>
+            <text x="128" y="104" font-family="Dela Gothic One, sans-serif" font-size="18" fill="#d4202f">−4 %</text>
+          </svg>
+        </div>
+        <div class="txt"><span class="date">Mercredi 23 déc.</span><h3>Évolutions, probabilités et statistiques</h3><p>Taux d'évolution, indicateurs statistiques et probabilités. Exercices adaptés au programme de chaque élève.</p></div>
+      </article>
+      <article class="day">
+        <div class="ill">
+          <span class="num">Jour 4</span>
+          <svg viewBox="0 0 200 110" aria-hidden="true">
+            <rect x="52" y="8" width="78" height="96" rx="4" fill="#ffffff"/>
+            <path d="M64 26h54M64 40h40M64 54h50M64 68h34M64 82h46" stroke="#0c0f17" stroke-width="3" opacity=".35"/>
+            <path d="M66 40l6 6 10-12" fill="none" stroke="#1d6b4f" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="150" cy="70" r="26" fill="none" stroke="#d4202f" stroke-width="4"/>
+            <text x="132" y="79" font-family="Dela Gothic One, sans-serif" font-size="22" fill="#d4202f">20</text>
+            <path d="M20 30l14 4M18 50h16M20 70l14-4" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="txt"><span class="date">Jeudi 24 déc.</span><h3>Sujet en conditions réelles</h3><p>Un sujet type épreuve corrigé en direct, avec la méthode pour bien rédiger. Test final et bilan avant / après.</p></div>
+      </article>
+    </div>
     <p class="small muted">Chaque élève travaille le sujet de son parcours : spécialité maths, enseignement scientifique sans spécialité, ou voie technologique.</p>
   </section>
 
   <section>
+    <span class="kicker"><span>Une séance</span></span>
     <h2>À quoi ressemble une matinée ?</h2>
-    <div class="card" style="display:flex;flex-direction:column;gap:14px">
-      <div class="bar" aria-hidden="true"><span style="flex:10"></span><span style="flex:35"></span><span class="light" style="flex:10"></span><span style="flex:60"></span><span style="flex:25"></span><span class="light" style="flex:10"></span></div>
+    <div class="card" style="display:flex;flex-direction:column;gap:16px">
+      <div class="bar" aria-hidden="true"><span style="flex:10"></span><span class="b" style="flex:35"></span><span class="light" style="flex:10"></span><span style="flex:60"></span><span class="b" style="flex:25"></span><span style="flex:10"></span></div>
       <ol class="timeline">
-        <li><b>10 min</b><span>Échauffement : 5 automatismes chronométrés</span></li>
-        <li><b>35 min</b><span>Méthodes et exemples corrigés, pas à pas</span></li>
-        <li><b>10 min</b><span>Pause</span></li>
-        <li><b>60 min</b><span>Exercices accompagnés, chacun à son niveau</span></li>
-        <li><b>25 min</b><span>Correction commune et questions</span></li>
-        <li><b>10 min</b><span>Ce qu'il faut retenir et travail conseillé pour le lendemain</span></li>
+        <li><b class="r">10 min</b><span>Échauffement : 5 automatismes chronométrés</span></li>
+        <li><b class="bl">35 min</b><span>Méthodes et exemples corrigés, pas à pas</span></li>
+        <li><b class="g">10 min</b><span>Pause</span></li>
+        <li><b class="r">60 min</b><span>Exercices accompagnés, chacun à son niveau</span></li>
+        <li><b class="bl">25 min</b><span>Correction commune et questions</span></li>
+        <li><b class="r">10 min</b><span>Ce qu'il faut retenir et travail conseillé pour le lendemain</span></li>
       </ol>
       <p class="small muted">Déroulement type de 2h30. Caméra allumée, questions à tout moment : en groupe de 6, chacun a la parole.</p>
     </div>
   </section>
 
   <section>
+    <span class="kicker"><span>L'offre</span></span>
     <h2>Concrètement, ce que reçoit votre enfant</h2>
     <div class="card offer">
       <span class="pill">Paiement unique · aucun abonnement</span>
@@ -193,39 +358,53 @@ footer { color: var(--muted); font-size: .85rem; display: flex; flex-direction: 
         <li>Une fiche méthode par chapitre, à imprimer</li>
         <li>Un bilan écrit individuel envoyé aux parents à la fin du stage</li>
       </ul>
-      <div class="cta">
-        <a class="btn primary" href="https://buy.stripe.com/fZu5kCfnD7CG2udgwSdwc01" target="_blank" rel="noopener">Réserver une place</a>
-      </div>
+      <div class="cta"><a class="btn primary" href="https://buy.stripe.com/fZu5kCfnD7CG2udgwSdwc01" target="_blank" rel="noopener">Réserver une place</a></div>
       <p class="alt">Places de lancement épuisées ? <a href="https://buy.stripe.com/4gM4gy6R7e14fgZfsOdwc00" target="_blank" rel="noopener">Réserver au tarif normal (200 €)</a></p>
     </div>
 
-    <div class="grid2">
-      <div class="sample">
-        <span class="small muted">Extrait d'une fiche méthode</span>
-        <div class="tech">
+    <div class="supports">
+      <div class="support">
+        <span class="cap">Fiche méthode</span>
+        <div class="sheet tilt-l">
+          <div class="head"><span>Fiche n°1</span><span>Automatismes</span></div>
           <span class="k">技 03 · Coefficient multiplicateur</span>
           <span>Hausse de t % : × (1 + t/100)</span>
           <span>Baisse de t % : × (1 − t/100)</span>
           <span class="hl">+20 % puis −20 % : × 1,2 × 0,8 = × 0,96</span>
-          <span><b style="color:var(--accent)">Piège :</b> on ne revient pas au départ, c'est −4 %.</span>
+          <span><b style="color:#d4202f">Piège :</b> on ne revient pas au départ, c'est −4 %.</span>
         </div>
       </div>
-      <div class="sample">
-        <span class="small muted">Exemple de bilan envoyé aux parents (élève fictif)</span>
-        <div class="card" style="display:flex;flex-direction:column;gap:8px">
-          <p><b>Automatismes :</b> 9/16 au jour 1, 13/16 au jour 4.</p>
-          <p><b>Acquis :</b> pourcentages et fractions.</p>
-          <p><b>À travailler :</b> variations d'une fonction, rédaction des justifications.</p>
-          <p><b>D'ici janvier :</b> 10 minutes d'automatismes par jour avec la fiche n°1.</p>
+      <div class="support">
+        <span class="cap">Exercice corrigé</span>
+        <div class="sheet">
+          <div class="head"><span>Jour 1</span><span>Équations</span></div>
+          <span><b>Résoudre</b> (2x − 1)(x + 3) = 0</span>
+          <span class="step"><i>1</i><span>Produit nul : un des facteurs est nul.</span></span>
+          <span class="step"><i>2</i><span>2x − 1 = 0 ou x + 3 = 0</span></span>
+          <span class="step"><i>3</i><span>x = 1/2 ou x = −3</span></span>
+          <span class="hl">Les solutions sont 1/2 et −3.</span>
+          <span class="stamp">Rédigé ✓</span>
+        </div>
+      </div>
+      <div class="support">
+        <span class="cap">Bilan aux parents (élève fictif)</span>
+        <div class="sheet tilt-r">
+          <div class="head"><span>Bilan individuel</span><span>Exemple</span></div>
+          <span><b>Automatismes :</b> 9/16 au jour 1, 13/16 au jour 4.</span>
+          <span><b>Acquis :</b> pourcentages et fractions.</span>
+          <span><b>À travailler :</b> variations d'une fonction, rédaction des justifications.</span>
+          <span><b>D'ici janvier :</b> 10 minutes d'automatismes par jour avec la fiche n°1.</span>
         </div>
       </div>
     </div>
   </section>
 
   <section>
+    <span class="kicker"><span>Le Sensei</span></span>
     <h2>Votre enseignant</h2>
     <div class="card prof">
-      <img src="logo.jpg" alt="" width="84" height="84">
+      <!-- Emplacement photo : remplacer logo.jpg par photo.jpg (carrée, 400×400 px) quand elle sera prête -->
+      <div class="photo"><img src="logo.jpg" alt="Sensei des Maths" width="96" height="96"></div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <p><b>Moustafa Jabie, enseignant de mathématiques.</b> Ancien élève de classe préparatoire PSI, Master de mathématiques appliquées.</p>
         <p class="muted">Sur TikTok, plus de 1 000 élèves suivent <a href="https://www.tiktok.com/@senseidesmaths" target="_blank" rel="noopener">@senseidesmaths</a>, où chaque notion du lycée est expliquée à travers l'univers des animés. Même approche en stage : des méthodes claires, des repères qui restent en tête.</p>
@@ -236,10 +415,11 @@ footer { color: var(--muted); font-size: .85rem; display: flex; flex-direction: 
   <section class="free">
     <h2>Pas sûr que ce soit pour votre enfant ?</h2>
     <p>Réservez un bilan gratuit de 20 minutes en visio. On fait le point sur ses acquis et ses difficultés, et je vous dis honnêtement si le stage est adapté. Sans engagement.</p>
-    <a class="btn" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Na5llZhoLQBbcyALgm1cF7P_PQ-jrCjjdpaJla6epzByFW4gX7H2bQ3GbXTa9SCMI2O2xfg-O" target="_blank" rel="noopener">Choisir un créneau</a>
+    <a class="btn light" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Na5llZhoLQBbcyALgm1cF7P_PQ-jrCjjdpaJla6epzByFW4gX7H2bQ3GbXTa9SCMI2O2xfg-O" target="_blank" rel="noopener">Choisir un créneau</a>
   </section>
 
   <section>
+    <span class="kicker"><span>FAQ</span></span>
     <h2>Questions fréquentes</h2>
     <div>
       <div class="qa"><h3>Mon enfant ne fait pas spé maths, est-ce adapté ?</h3><p>Oui. Le stage prépare chaque élève au sujet de son parcours : spécialité maths, enseignement scientifique sans spécialité, ou voie technologique.</p></div>
@@ -251,7 +431,7 @@ footer { color: var(--muted); font-size: .85rem; display: flex; flex-direction: 
     </div>
   </section>
 
-  <section>
+  <section class="final">
     <h2>6 places, inscriptions jusqu'au 13 décembre</h2>
     <div class="cta">
       <a class="btn primary" href="https://buy.stripe.com/fZu5kCfnD7CG2udgwSdwc01" target="_blank" rel="noopener">Réserver une place · 150 €</a>
